@@ -9,12 +9,14 @@
       <th></th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @beers.each do |beer| %>
       <tr>
+       <td><%= beer %></td
         <td><%= beer.name %></td>
         <td><%= beer.style %></td>
         <td><%= beer.brewery_id %></td>
@@ -29,3 +31,4 @@
 <br>
 
 <%= link_to 'New Beer', new_beer_path %>
+<%= link_to 'list of breweries', breweries_path %>
