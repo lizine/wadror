@@ -1,0 +1,74 @@
+irb(main):001:0> Brewery.create name:"BrewDog", year:2007
+   (0.1ms)  begin transaction
+  SQL (55.5ms)  INSERT INTO "breweries" ("created_at", "name", "updated_at", "year") VALUES (?, ?, ?, ?)  [["created_at", Thu, 23 Jan 2014 11:15:28 UTC +00:00], ["name", "BrewDog"], ["updated_at", Thu, 23 Jan 2014 11:15:28 UTC +00:00], ["year", 2007]]
+   (28.9ms)  commit transaction
+=> #<Brewery id: 5, name: "BrewDog", year: 2007, created_at: "2014-01-23 11:15:28", updated_at: "2014-01-23 11:15:28">
+irb(main):002:0> koira = Brewery.find_by name:"BrewDog"
+  Brewery Load (6.8ms)  SELECT "breweries".* FROM "breweries" WHERE "breweries"."name" = 'BrewDog' LIMIT 1
+=> #<Brewery id: 5, name: "BrewDog", year: 2007, created_at: "2014-01-23 11:15:28", updated_at: "2014-01-23 11:15:28">
+irb(main):003:0> koira.beers.create name:"Punk IPA", style:"IPA"
+   (0.1ms)  begin transaction
+  SQL (13.0ms)  INSERT INTO "beers" ("brewery_id", "created_at", "name", "style", "updated_at") VALUES (?, ?, ?, ?, ?)  [["brewery_id", 5], ["created_at", Thu, 23 Jan 2014 11:18:46 UTC +00:00], ["name", "Punk IPA"], ["style", "IPA"], ["updated_at", Thu, 23 Jan 2014 11:18:46 UTC +00:00]]
+   (28.0ms)  commit transaction
+=> #<Beer id: 14, name: "Punk IPA", style: "IPA", brewery_id: 5, created_at: "2014-01-23 11:18:46", updated_at: "2014-01-23 11:18:46">
+irb(main):004:0> koira.beers.create name:"Nanny State", style:"lowalcohol"
+   (0.2ms)  begin transaction
+  SQL (15.4ms)  INSERT INTO "beers" ("brewery_id", "created_at", "name", "style", "updated_at") VALUES (?, ?, ?, ?, ?)  [["brewery_id", 5], ["created_at", Thu, 23 Jan 2014 11:19:02 UTC +00:00], ["name", "Nanny State"], ["style", "lowalcohol"], ["updated_at", Thu, 23 Jan 2014 11:19:02 UTC +00:00]]
+   (18.7ms)  commit transaction
+=> #<Beer id: 15, name: "Nanny State", style: "lowalcohol", brewery_id: 5, created_at: "2014-01-23 11:19:02", updated_at: "2014-01-23 11:19:02">
+irb(main):005:0> b = Beer.find_by name:Nanny State
+SyntaxError: (irb):5: syntax error, unexpected tCONSTANT, expecting keyword_do or '{' or '('
+	from /home/lini/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/railties-4.0.2/lib/rails/commands/console.rb:90:in `start'
+	from /home/lini/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/railties-4.0.2/lib/rails/commands/console.rb:9:in `start'
+	from /home/lini/.rbenv/versions/2.0.0-p353/lib/ruby/gems/2.0.0/gems/railties-4.0.2/lib/rails/commands.rb:62:in `<top (required)>'
+	from bin/rails:4:in `require'
+	from bin/rails:4:in `<main>'
+irb(main):006:0> b = Beer.find_by name:"Nanny State"
+  Beer Load (24.7ms)  SELECT "beers".* FROM "beers" WHERE "beers"."name" = 'Nanny State' LIMIT 1
+=> #<Beer id: 15, name: "Nanny State", style: "lowalcohol", brewery_id: 5, created_at: "2014-01-23 11:19:02", updated_at: "2014-01-23 11:19:02">
+irb(main):007:0> b.ratings.create score:30
+   (0.1ms)  begin transaction
+  SQL (6.4ms)  INSERT INTO "ratings" ("beer_id", "created_at", "score", "updated_at") VALUES (?, ?, ?, ?)  [["beer_id", 15], ["created_at", Thu, 23 Jan 2014 11:20:13 UTC +00:00], ["score", 30], ["updated_at", Thu, 23 Jan 2014 11:20:13 UTC +00:00]]
+   (30.0ms)  commit transaction
+=> #<Rating id: 4, score: 30, beer_id: 15, created_at: "2014-01-23 11:20:13", updated_at: "2014-01-23 11:20:13">
+irb(main):008:0> b.ratings.create score:27
+   (0.1ms)  begin transaction
+  SQL (14.1ms)  INSERT INTO "ratings" ("beer_id", "created_at", "score", "updated_at") VALUES (?, ?, ?, ?)  [["beer_id", 15], ["created_at", Thu, 23 Jan 2014 11:20:17 UTC +00:00], ["score", 27], ["updated_at", Thu, 23 Jan 2014 11:20:17 UTC +00:00]]
+   (20.9ms)  commit transaction
+=> #<Rating id: 5, score: 27, beer_id: 15, created_at: "2014-01-23 11:20:17", updated_at: "2014-01-23 11:20:17">
+irb(main):009:0> b.ratings.create score:32
+   (0.1ms)  begin transaction
+  SQL (14.1ms)  INSERT INTO "ratings" ("beer_id", "created_at", "score", "updated_at") VALUES (?, ?, ?, ?)  [["beer_id", 15], ["created_at", Thu, 23 Jan 2014 11:20:20 UTC +00:00], ["score", 32], ["updated_at", Thu, 23 Jan 2014 11:20:20 UTC +00:00]]
+   (20.7ms)  commit transaction
+=> #<Rating id: 6, score: 32, beer_id: 15, created_at: "2014-01-23 11:20:20", updated_at: "2014-01-23 11:20:20">
+irb(main):010:0> beer = Beer.find_by name:"Punk IPA"
+  Beer Load (8.4ms)  SELECT "beers".* FROM "beers" WHERE "beers"."name" = 'Punk IPA' LIMIT 1
+=> #<Beer id: 14, name: "Punk IPA", style: "IPA", brewery_id: 5, created_at: "2014-01-23 11:18:46", updated_at: "2014-01-23 11:18:46">
+irb(main):011:0> beer.ratings.create score:15
+   (0.1ms)  begin transaction
+  SQL (11.3ms)  INSERT INTO "ratings" ("beer_id", "created_at", "score", "updated_at") VALUES (?, ?, ?, ?)  [["beer_id", 14], ["created_at", Thu, 23 Jan 2014 11:20:46 UTC +00:00], ["score", 15], ["updated_at", Thu, 23 Jan 2014 11:20:46 UTC +00:00]]
+   (26.9ms)  commit transaction
+=> #<Rating id: 7, score: 15, beer_id: 14, created_at: "2014-01-23 11:20:46", updated_at: "2014-01-23 11:20:46">
+irb(main):012:0> beer.ratings.create score:22
+   (0.1ms)  begin transaction
+  SQL (15.0ms)  INSERT INTO "ratings" ("beer_id", "created_at", "score", "updated_at") VALUES (?, ?, ?, ?)  [["beer_id", 14], ["created_at", Thu, 23 Jan 2014 11:20:50 UTC +00:00], ["score", 22], ["updated_at", Thu, 23 Jan 2014 11:20:50 UTC +00:00]]
+   (26.4ms)  commit transaction
+=> #<Rating id: 8, score: 22, beer_id: 14, created_at: "2014-01-23 11:20:50", updated_at: "2014-01-23 11:20:50">
+irb(main):013:0> beer.ratings.create score:26
+   (0.1ms)  begin transaction
+  SQL (14.3ms)  INSERT INTO "ratings" ("beer_id", "created_at", "score", "updated_at") VALUES (?, ?, ?, ?)  [["beer_id", 14], ["created_at", Thu, 23 Jan 2014 11:20:52 UTC +00:00], ["score", 26], ["updated_at", Thu, 23 Jan 2014 11:20:52 UTC +00:00]]
+   (24.2ms)  commit transaction
+=> #<Rating id: 9, score: 26, beer_id: 14, created_at: "2014-01-23 11:20:52", updated_at: "2014-01-23 11:20:52">
+irb(main):014:0> Beer.count
+   (5.7ms)  SELECT COUNT(*) FROM "beers"
+=> 12
+irb(main):015:0> Beer.all
+  Beer Load (7.3ms)  SELECT "beers".* FROM "beers"
+=> #<ActiveRecord::Relation [#<Beer id: 1, name: "Iso 3", style: "Lager", brewery_id: 1, created_at: "2014-01-15 12:40:06", updated_at: "2014-01-15 12:40:06">, #<Beer id: 2, name: "Karhu", style: "Lager", brewery_id: 1, created_at: "2014-01-15 12:40:06", updated_at: "2014-01-15 12:40:06">, #<Beer id: 3, name: "Tuplahumala", style: "Lager", brewery_id: 1, created_at: "2014-01-15 12:40:06", updated_at: "2014-01-15 12:40:06">, #<Beer id: 4, name: "Huvila Pale Ale", style: "Pale Ale", brewery_id: 2, created_at: "2014-01-15 12:40:06", updated_at: "2014-01-15 12:40:06">, #<Beer id: 5, name: "X Porter", style: "Porter", brewery_id: 2, created_at: "2014-01-15 12:40:06", updated_at: "2014-01-15 12:40:06">, #<Beer id: 6, name: "Hefezeizen", style: "Weizen", brewery_id: 3, created_at: "2014-01-15 12:40:06", updated_at: "2014-01-15 12:40:06">, #<Beer id: 7, name: "Helles", style: "Lager", brewery_id: 3, created_at: "2014-01-15 12:40:06", updated_at: "2014-01-15 12:40:06">, #<Beer id: 8, name: "Lite", style: "Lager", brewery_id: 1, created_at: "2014-01-15 12:43:20", updated_at: "2014-01-15 12:43:20">, #<Beer id: 9, name: "IVB", style: "Lager", brewery_id: 1, created_at: "2014-01-15 12:44:11", updated_at: "2014-01-15 12:44:11">, #<Beer id: 10, name: "Extra Light Triple Brewed", style: "Lager", brewery_id: 1, created_at: "2014-01-15 12:44:48", updated_at: "2014-01-15 12:44:48">, ...]>
+irb(main):016:0> Rating.count
+   (5.7ms)  SELECT COUNT(*) FROM "ratings"
+=> 9
+irb(main):017:0> Rating.all
+  Rating Load (8.0ms)  SELECT "ratings".* FROM "ratings"
+=> #<ActiveRecord::Relation [#<Rating id: 1, score: 10, beer_id: 1, created_at: "2014-01-23 10:57:45", updated_at: "2014-01-23 10:57:45">, #<Rating id: 2, score: 21, beer_id: 1, created_at: "2014-01-23 10:57:50", updated_at: "2014-01-23 10:57:50">, #<Rating id: 3, score: 17, beer_id: 1, created_at: "2014-01-23 10:57:54", updated_at: "2014-01-23 10:57:54">, #<Rating id: 4, score: 30, beer_id: 15, created_at: "2014-01-23 11:20:13", updated_at: "2014-01-23 11:20:13">, #<Rating id: 5, score: 27, beer_id: 15, created_at: "2014-01-23 11:20:17", updated_at: "2014-01-23 11:20:17">, #<Rating id: 6, score: 32, beer_id: 15, created_at: "2014-01-23 11:20:20", updated_at: "2014-01-23 11:20:20">, #<Rating id: 7, score: 15, beer_id: 14, created_at: "2014-01-23 11:20:46", updated_at: "2014-01-23 11:20:46">, #<Rating id: 8, score: 22, beer_id: 14, created_at: "2014-01-23 11:20:50", updated_at: "2014-01-23 11:20:50">, #<Rating id: 9, score: 26, beer_id: 14, created_at: "2014-01-23 11:20:52", updated_at: "2014-01-23 11:20:52">]>
+

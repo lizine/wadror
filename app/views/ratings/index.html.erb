@@ -1,0 +1,19 @@
+<h2> List of ratings </h2>
+<p> Nubmer of ratings: <%= @ratings.count %> </p>
+<table>
+  <thead>
+    <tr>
+      <th>Score</th>
+     
+    </tr>
+  </thead>
+  <tbody>
+    <% @ratings.each do |rating| %>
+      <tr>
+        <td><%= rating %></td>
+       
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
