@@ -3,8 +3,9 @@ class Beer < ActiveRecord::Base
 	has_many :ratings
 
 	def average_rating
-	beer.ratings.each do |rating|
-	ka = ka + rating.score
+	 
+	  " jupa #{ratings.average('score')}"
+	 
 	end
 end
 
