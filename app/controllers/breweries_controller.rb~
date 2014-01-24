@@ -66,7 +66,6 @@ class BreweriesController < ApplicationController
     def authenticate
 	 authenticate_or_request_with_http_basic do |username, password|
       username == "admin" and password == "secret"
-	 end
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_brewery
