@@ -4,7 +4,7 @@ gem 'byebug', group: [:development, :test]
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
-
+gem 'bcrypt-ruby', '~> 3.1.2'
 # Use sqlite3 as the database for Active Record
 
 gem 'rb-readline', "~> 0.5.0.pre.1", :require => false
