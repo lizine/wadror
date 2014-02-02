@@ -7,14 +7,13 @@ has_many :users
 
 
 def to_s
-	me = Membership.find_by id:user_id
-        club_id = me.beer_club_id
-	kerho = BeerClub.find_by id:club_id
+	m = BeerClub.find_by id:beer_club_id
+        
 
-	if me.nil?
+	if m.nil?
 		"Käyttäjä ei ole vielä liittynyt olutseuraan"
 	else
-	" #{kerho.name} "
+	" #{m.name} "
 
 	end
 end

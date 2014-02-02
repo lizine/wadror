@@ -39,9 +39,9 @@
 <tbody>
  <% @user.memberships.each do |membership| %>
  <tr>
-<% if not membership.name.nil? %>
+
    <td><%= membership %><br/></td>
-<% end %>
+
   
    <tr>
  <% end %>
