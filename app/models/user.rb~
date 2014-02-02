@@ -7,8 +7,14 @@ class User < ActiveRecord::Base
   has_many :beers, through: :ratings
 
   has_many :memberships
-  has_many :beer_clubs, through :memberships
+  has_many :beer_clubs, through: :memberships
 
  validates :username, uniqueness: true
   validates :username, length: { in: 3..15 }
+
+
+def to_s
+	u = User.find_by id:id
+	" fe "
+	end
 end

@@ -11,4 +11,10 @@ class User < ActiveRecord::Base
 
  validates :username, uniqueness: true
   validates :username, length: { in: 3..15 }
+
+
+def to_s
+	u = User.find_by id:id
+	" #{u.username}"
+	end
 end
