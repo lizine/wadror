@@ -25,7 +25,9 @@
  <% @user.ratings.each do |rating| %>
  <tr>
    <td><%= rating %><br/></td>
+<% if @user == current_user %>
    <td> <%= link_to 'Delete', rating, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<% end %>
    <tr>
  <% end %>
  </tbody>
