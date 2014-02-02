@@ -29,10 +29,10 @@ def new
 	
 	 def create
 	  rating = Rating.create params.require(:rating).permit(:score, :beer_id)
-
+          current_user.ratings << rating
 	  # talletetaan tehdyn reittauksen sessioon 
-	  session[:last_rating] = "#{rating.beer.name} #{rating.score} points"
+	 # session[:last_rating] = "#{rating.beer.name} #{rating.score} points"
 
-	  redirect_to ratings_path
+	  redirect_to current_user
 	  end
 end
