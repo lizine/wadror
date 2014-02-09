@@ -1,0 +1,29 @@
+require 'spec_helper'
+
+describe "Beers page" do
+
+let!(:brewery) { FactoryGirl.create :brewery, name:"Koff" }
+
+it "whit correct name,beer is added" do
+    visit new_beer_path
+    
+    fill_in('beer[name]', with:'Jeppo')
+    expect{
+      click_button "Create Beer"
+    }.to change{Beer.count}.from(0).to(1)
+
+   
+  end
+
+it "whit incorrect name,beer is not added" do
+    visit new_beer_path
+    
+    fill_in('beer[name]', with:'j')
+    
+    
+      click_button "Create Beer"
+   
+      expect(Beer.count).to eq(0)
+   
+  end
+end
