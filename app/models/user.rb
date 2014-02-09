@@ -19,4 +19,10 @@ def to_s
 	u = User.find_by id:id
 	" #{u.username}"
 	end
+
+def favorite_beer
+    return nil if ratings.empty?
+    ratings.order(score: :desc).limit(1).first.beer
+  end
+
 end
