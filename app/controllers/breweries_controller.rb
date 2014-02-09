@@ -1,6 +1,7 @@
 class BreweriesController < ApplicationController
+  before_action :ensure_that_signed_in, except: [:index, :show]
   before_action :set_brewery, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate, only: [:destroy]
+  
   # GET /breweries
   # GET /breweries.json
   def index
@@ -63,11 +64,7 @@ class BreweriesController < ApplicationController
 
   private
 
-    def authenticate
-	 authenticate_or_request_with_http_basic do |username, password|
-      username == "admin" and password == "secret"
-	 end
-    end
+    
     # Use callbacks to share common setup or constraints between actions.
     def set_brewery
       @brewery = Brewery.find(params[:id])
