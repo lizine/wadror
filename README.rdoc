@@ -4,6 +4,8 @@ http://secure-sierra-6403.herokuapp.com/breweries
 
 [![Build Status](https://travis-ci.org/lizine/wadror.png)](https://travis-ci.org/lizine/wadror)
 
+[![Code Climate](https://codeclimate.com/github/lizine/wadror.png)](https://codeclimate.com/github/lizine/wadror)
+
 
 
 
