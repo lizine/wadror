@@ -1,5 +1,7 @@
 class BeersController < ApplicationController
+  
   before_action :set_beer, only: [:show, :edit, :update, :destroy]
+  before_action :set_breweries_and_styles_for_template, only: [:new, :edit, :create]
 
   # GET /beers
   # GET /beers.json
@@ -68,6 +70,11 @@ class BeersController < ApplicationController
     def set_beer
       @beer = Beer.find(params[:id])
     end
+
+def set_breweries_and_styles_for_template
+    @breweries = Brewery.all
+    @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def beer_params

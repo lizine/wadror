@@ -1,14 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h3><%= @beer_club.name %> <%= @beer_club.city %></h3>
+<h3><%= @beer_club.name %>, <%= @beer_club.city %></h3>
 
 <p>Founded <%= @beer_club.founded %>
 </p>
 
-<p>
-  
-  <%= @beer_club.city %>
-</p>
 
 
 <table>

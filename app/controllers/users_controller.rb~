@@ -54,7 +54,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user.destroy
+    @user.destroy if current_user == @user
     respond_to do |format|
       format.html { redirect_to root }
       format.json { head :no_content }
