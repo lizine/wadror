@@ -26,9 +26,40 @@ describe "Rating" do
   end
 
   it "should show the correct amount of ratings in ratings page" do
+     visit new_rating_path
+    select('iso 3', from:'rating[beer_id]')
+    fill_in('rating[score]', with:'15')
+     click_button "Create Rating"
+
     visit ratings_path
-    save_and_open_page
+    
     expect(page).to have_content 'List of ratings'
-    expect(page).to have_content 'Nubmer of ratings: 2'
+    expect(page).to have_content 'Nubmer of ratings: 1'
+  end
+ it "should show users ratings on users page" do
+     visit new_rating_path
+    select('iso 3', from:'rating[beer_id]')
+    fill_in('rating[score]', with:'15')
+     click_button "Create Rating"
+
+    visit user_path(user)
+   
+    expect(page).to have_content 'has made 1 rating,'
+    expect(page).to have_content 'iso 3'
+  
+  end
+   it "should not show rating on users page if rating is deleted" do
+     visit new_rating_path
+    select('iso 3', from:'rating[beer_id]')
+    fill_in('rating[score]', with:'15')
+     click_button "Create Rating"
+
+    visit user_path(user)
+    
+    click_link "Delete"
+save_and_open_page
+    expect(page).to have_content 'user has not yet been rating beers! '
+   
+  
   end
 end
