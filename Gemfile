@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 1.2'
 
 #HTTP PARTY
 gem 'httparty'
-
+gem "rails-settings-cached", "0.3.1"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -49,6 +49,7 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'simplecov', require: false
+  gem 'webmock'
 end
 # Use unicorn as the app server
 # gem 'unicorn'
