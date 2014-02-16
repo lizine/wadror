@@ -10,7 +10,7 @@ class MembershipsController < ApplicationController
   # GET /memberships/1
   # GET /memberships/1.json
   def show
-  
+  redirect_to :back, notice: 'Welcome to the Club'
   end
 
   # GET /memberships/new

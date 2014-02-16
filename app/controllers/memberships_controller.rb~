@@ -10,7 +10,7 @@ class MembershipsController < ApplicationController
   # GET /memberships/1
   # GET /memberships/1.json
   def show
-  
+  redirect_to :back, notice: 'Welcome to the Club #{current_user}'
   end
 
   # GET /memberships/new
@@ -37,8 +37,6 @@ class MembershipsController < ApplicationController
         format.json { render json: @membership.errors, status: :unprocessable_entity }
       end
     end
-
-redirect_to "http://www.telkku.com"
   end
 
   # PATCH/PUT /memberships/1
